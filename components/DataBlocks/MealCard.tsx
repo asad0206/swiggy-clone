@@ -26,6 +26,8 @@ interface MealCardProps {
     Category: string;
     Rating: number;
     Description: string;
+    Discount: number;
+    Ingredients: string[];
 }
 
 export default function MealCard({
@@ -36,6 +38,8 @@ export default function MealCard({
     Category,
     Rating,
     Description,
+    Discount,
+    Ingredients
 }: MealCardProps) {
 
     const truncateDescription = (description: string): string => {
@@ -61,7 +65,7 @@ export default function MealCard({
                             />
                         </div>
                         <div className="absolute top-4 left-4 bg-black/80 text-white px-3 py-1 rounded-md text-sm">
-                            <span>10% OFF ABOVE ₹1000</span>
+                            <span>{Discount}% OFF ABOVE ₹500</span>
                         </div>
                     </div>
                     <CardContent className="p-4">
@@ -74,6 +78,7 @@ export default function MealCard({
                                 </div>
                             </div>
                             <div className="flex flex-row text-sm text-muted-foreground">{Category}</div>
+                            <div className="flex flex-row text-sm text-muted-foreground">{Ingredients.join(', ')}</div>
                             <div className="flex flex-row text-sm text-muted-foreground">{Area}</div>
                         </div>
                     </CardContent>

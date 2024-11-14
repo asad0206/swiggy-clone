@@ -12,6 +12,10 @@ interface DetailedMeal extends Meal {
     strCategory: string;
     strArea: string;
     strInstructions: string;
+    strIngredient1: string;
+    strIngredient2: string;
+    strIngredient3: string;
+    strIngredient4: string;
 }
 
 interface ApiResponse {
@@ -27,6 +31,8 @@ export default function Products() {
         Category: string;
         Rating: string;
         Description: string;
+        Discount: number;
+        Ingredients: string[];
     }[]>([]);
 
     useEffect(() => {
@@ -42,6 +48,15 @@ export default function Products() {
                         const detailsData: ApiResponse = await detailsResponse.json();
                         const detailedMeal = detailsData.meals[0] as DetailedMeal;
 
+                        const discount = Math.floor(Math.random() * 11) * 5 + 10; // Random discount
+
+                        const ingredients = [
+                            detailedMeal.strIngredient1,
+                            detailedMeal.strIngredient2,
+                            detailedMeal.strIngredient3,
+                            detailedMeal.strIngredient4,
+                        ].filter(Boolean); // Filter out empty ingredients
+
                         return {
                             Name: detailedMeal.strMeal,
                             Area: detailedMeal.strArea,
@@ -50,6 +65,8 @@ export default function Products() {
                             Category: detailedMeal.strCategory,
                             Rating: (Math.random() * 3 + 2).toFixed(1),
                             Description: detailedMeal.strInstructions,
+                            Discount: discount,
+                            Ingredients: ingredients,
                         };
                     })
                 );
@@ -76,6 +93,8 @@ export default function Products() {
                     Category={product.Category}
                     Rating={parseFloat(product.Rating)}
                     Description={product.Description}
+                    Discount={product.Discount}
+                    Ingredients={product.Ingredients}
                 />
             ))}
         </div>
