@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import MealCard from "./MealCard";
+import { Button } from "@/components/ui/button";
 
 interface Meal {
     strMeal: string;
@@ -34,6 +35,9 @@ export default function Products() {
         Discount: number;
         Ingredients: string[];
     }[]>([]);
+
+    const [currentPage, setCurrentPage] = useState(0);
+    const productsPerPage = 6;
 
     useEffect(() => {
         const fetchData = async () => {
@@ -80,24 +84,46 @@ export default function Products() {
         fetchData();
     }, []);
 
+    const pageCount = Math.ceil(products.length / productsPerPage);
+    const paginatedProducts = products.slice(
+        currentPage * productsPerPage,
+        (currentPage + 1) * productsPerPage
+    );
+
+    const handlePageChange = (page: number) => {
+        setCurrentPage(page);
+    };
+
     return (
-
-        <div className="grid grid-cols-3 gap-4 mx-10 mb-10">
-            {products.map((product) => (
-                <MealCard
-                    key={product.MealId}
-                    Name={product.Name}
-                    Area={product.Area}
-                    Thumbnail={product.Thumbnail}
-                    MealId={parseInt(product.MealId)}
-                    Category={product.Category}
-                    Rating={parseFloat(product.Rating)}
-                    Description={product.Description}
-                    Discount={product.Discount}
-                    Ingredients={product.Ingredients}
-                />
-            ))}
+        <div>
+            <div className="grid grid-cols-3 gap-4 mx-10 mb-10">
+                {paginatedProducts.map((product) => (
+                    <MealCard
+                        key={product.MealId}
+                        Name={product.Name}
+                        Area={product.Area}
+                        Thumbnail={product.Thumbnail}
+                        MealId={parseInt(product.MealId)}
+                        Category={product.Category}
+                        Rating={parseFloat(product.Rating)}
+                        Description={product.Description}
+                        Discount={product.Discount}
+                        Ingredients={product.Ingredients}
+                    />
+                ))}
+            </div>
+            <div className="flex justify-center my-4">
+                {Array.from({ length: pageCount }, (_, i) => (
+                    <Button
+                        key={i}
+                        variant={currentPage === i ? "default" : "outline"}
+                        className="mx-1"
+                        onClick={() => handlePageChange(i)}
+                    >
+                        {i + 1}
+                    </Button>
+                ))}
+            </div>
         </div>
-
     );
 }
