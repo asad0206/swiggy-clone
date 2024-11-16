@@ -2,13 +2,13 @@
 import React, { useState } from "react";
 import { Settings2, ChevronDown, X } from "lucide-react";
 import ShimmerButton from "@/components/ui/shimmer-button";
-import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import {
     Popover,
     PopoverContent,
     PopoverTrigger,
 } from "@/components/ui/popover"
 import Radio02 from "@/components/ui/radio02";
+import FilterMenu from "@/components/Filters/FilterMenu";
 
 export default function Filters() {
     const [selectedButtons, setSelectedButtons] = useState<{ [key: string]: boolean }>({});
@@ -41,7 +41,7 @@ export default function Filters() {
     return (
         <section>
             <div className="flex flex-row gap-3 m-5 text-xs">
-                <ShimmerButton className="rounded-full gap-3"><div>Filter</div> <Settings2 /></ShimmerButton>
+                <FilterMenu />
                 <Popover>
                     <PopoverTrigger asChild>
                         <ShimmerButton className="rounded-full gap-3"><div>Sort by</div> <ChevronDown /></ShimmerButton>
