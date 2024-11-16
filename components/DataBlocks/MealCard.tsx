@@ -13,8 +13,6 @@ import {
 } from "@/components/ui/dialog"
 import { Star } from "lucide-react"
 
-
-
 interface MealCardProps {
     Name: string;
     Area: string;
@@ -58,6 +56,9 @@ export default function MealCard({
                             <Image
                                 src={`${Thumbnail}`}
                                 alt={`${Name}, ${MealId} Thumbnail`}
+                                width="0"
+                                height="0"
+                                sizes="100vw"
                                 className="object-cover w-full h-full"
                             />
                         </div>
@@ -86,6 +87,5 @@ export default function MealCard({
                 <DialogDescription className="whitespace-pre-wrap">{truncatedDescription}</DialogDescription>
             </DialogContent>
         </Dialog >
-
     )
 }

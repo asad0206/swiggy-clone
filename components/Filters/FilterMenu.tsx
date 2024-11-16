@@ -14,7 +14,7 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import Radio02 from "@/components/ui/radio02";
 import { Settings2 } from "lucide-react";
-import { Checkbox } from "../ui/checkbox";
+import { Checkbox } from "@/components/ui/checkbox";
 
 interface FilterMenuProps {
     onCuisineChange: (cuisine: string) => void;
@@ -105,7 +105,7 @@ export default function FilterMenu({ onCuisineChange }: FilterMenuProps) {
                     </div>
                 </DialogHeader>
                 <div className="grid grid-cols-[200px_1fr] h-[300px]">
-                    <ScrollArea className="border-r">
+                    <ScrollArea className="border-r border-2">
                         {categories.map((category) => (
                             <Button
                                 key={category.id}
@@ -129,7 +129,7 @@ export default function FilterMenu({ onCuisineChange }: FilterMenuProps) {
                         )}
                         {activeCategory === "delivery" && (
                             <div className="space-y-4">
-                                <h3 className="font-medium text-sm">FILTE RBY</h3>
+                                <h3 className="font-medium text-sm">FILTER BY</h3>
                                 <div className="flex items-center space-x-2">
                                     <Checkbox id="fastDelivery" />
                                     <label
