@@ -22,7 +22,7 @@ interface FilterMenuProps {
 
 export default function FilterMenu({ onCuisineChange }: FilterMenuProps) {
     const [open, setOpen] = useState(false)
-    const [activeCategory, setActiveCategory] = useState("sort")
+    const [activeCategory, setActiveCategory] = useState("cuisines")
     const [selectedCuisine, setSelectedCuisine] = useState("indian")
 
     const categories = [
@@ -121,6 +121,12 @@ export default function FilterMenu({ onCuisineChange }: FilterMenuProps) {
                         ))}
                     </ScrollArea>
                     <ScrollArea className="p-4">
+                        {activeCategory === "cuisines" && (
+                            <div className="space-y-4">
+                                <h3 className="font-medium text-sm">FILTER BY CUISINE</h3>
+                                <Radio02 options={cuisineOptions} defaultValue={selectedCuisine} onChange={handleCuisineChange} />
+                            </div>
+                        )}
                         {activeCategory === "sort" && (
                             <div className="space-y-4">
                                 <h3 className="font-medium text-sm">SORT BY</h3>
@@ -139,12 +145,6 @@ export default function FilterMenu({ onCuisineChange }: FilterMenuProps) {
                                         Fast Delivery
                                     </label>
                                 </div>
-                            </div>
-                        )}
-                        {activeCategory === "cuisines" && (
-                            <div className="space-y-4">
-                                <h3 className="font-medium text-sm">FILTER BY CUISINE</h3>
-                                <Radio02 options={cuisineOptions} defaultValue={selectedCuisine} onChange={handleCuisineChange} />
                             </div>
                         )}
                         {activeCategory === "explore" && (
