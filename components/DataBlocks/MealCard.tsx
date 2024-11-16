@@ -1,4 +1,5 @@
 import React from "react"
+import Image from "next/image"
 import {
     Card,
     CardContent,
@@ -54,7 +55,7 @@ export default function MealCard({
                 <Card className="w-full max-w-sm overflow-hidden bg-card hover:scale-105 transition-transform duration-200 cursor-pointer">
                     <div className="relative">
                         <div className="aspect-[4/3] overflow-hidden">
-                            <img
+                            <Image
                                 src={`${Thumbnail}`}
                                 alt={`${Name}, ${MealId} Thumbnail`}
                                 className="object-cover w-full h-full"
