@@ -24,11 +24,12 @@ interface ApiResponse {
     meals: Meal[] | DetailedMeal[];
 }
 
-interface SearchProps {
+interface ProductsProps {
     searchInput: string;
+    cuisine: string;
 }
 
-export default function Products({ searchInput }: SearchProps) {
+export default function Products({ searchInput, cuisine }: ProductsProps) {
     const [products, setProducts] = useState<{
         Name: string;
         Area: string;
@@ -47,7 +48,7 @@ export default function Products({ searchInput }: SearchProps) {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('https://www.themealdb.com/api/json/v1/1/filter.php?a=Indian');
+                const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${cuisine}`);
                 const data: ApiResponse = await response.json();
                 const meals = data.meals as Meal[];
 
@@ -87,7 +88,7 @@ export default function Products({ searchInput }: SearchProps) {
         };
 
         fetchData();
-    }, []);
+    }, [cuisine]);
 
     const fuse = new Fuse(products, {
         keys: ['Name'],

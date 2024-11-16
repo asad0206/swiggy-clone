@@ -1,32 +1,38 @@
-import { Label } from "@/components/ui/label";
+import React, { useState } from "react";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import React from "react";
-
-interface RadioOption {
-    value: string;
-    label: string;
-}
+import { Label } from "@/components/ui/label";
 
 interface Radio02Props {
-    options: RadioOption[];
-    defaultValue?: string;
+    options: { value: string; label: string }[];
+    defaultValue: string;
+    onChange: (value: string) => void;
 }
 
-export default function Radio02({ options, defaultValue = options[0]?.value }: Radio02Props) {
+export default function Radio02({ options, defaultValue, onChange }: Radio02Props) {
+    const [value, setValue] = useState(defaultValue);
+
+    const handleChange = (newValue: string) => {
+        setValue(newValue);
+        onChange(newValue);
+    };
+
     return (
         <RadioGroup
-            defaultValue={defaultValue}
+            value={value}
+            onValueChange={handleChange}
             style={{
                 "--primary": "238.7 83.5% 66.7%",
                 "--ring": "238.7 83.5% 66.7%",
-            } as React.CSSProperties}
-        >
+            } as React.CSSProperties}>
             {options.map((option) => (
-                <div key={option.value} className="flex items-center gap-2">
-                    <RadioGroupItem value={option.value} id={`radio-02-${option.value}`} />
-                    <Label htmlFor={`radio-02-${option.value}`}>{option.label}</Label>
+                <div key={option.value} className="flex items-center space-x-2">
+                    <RadioGroupItem value={option.value} id={option.value} />
+                    <Label htmlFor={option.value}>{option.label}</Label>
                 </div>
             ))}
         </RadioGroup>
     );
 }
+
+
+

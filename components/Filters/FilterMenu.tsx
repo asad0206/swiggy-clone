@@ -16,10 +16,14 @@ import Radio02 from "@/components/ui/radio02";
 import { Settings2 } from "lucide-react";
 import { Checkbox } from "../ui/checkbox";
 
+interface FilterMenuProps {
+    onCuisineChange: (cuisine: string) => void;
+}
 
-export default function FilterMenu() {
+export default function FilterMenu({ onCuisineChange }: FilterMenuProps) {
     const [open, setOpen] = useState(false)
     const [activeCategory, setActiveCategory] = useState("sort")
+    const [selectedCuisine, setSelectedCuisine] = useState("indian")
 
     const categories = [
         { id: "sort", label: "Sort" },
@@ -84,7 +88,10 @@ export default function FilterMenu() {
         { value: "offers", label: "Offers" },
     ]
 
-
+    const handleCuisineChange = (value: string) => {
+        setSelectedCuisine(value);
+        onCuisineChange(value);
+    };
 
     return (
         <Dialog open={open} onOpenChange={setOpen}>
@@ -117,7 +124,7 @@ export default function FilterMenu() {
                         {activeCategory === "sort" && (
                             <div className="space-y-4">
                                 <h3 className="font-medium text-sm">SORT BY</h3>
-                                <Radio02 options={sortOptions} defaultValue="relevance" />
+                                <Radio02 options={sortOptions} defaultValue="relevance" onChange={() => { }} />
                             </div>
                         )}
                         {activeCategory === "delivery" && (
@@ -137,7 +144,7 @@ export default function FilterMenu() {
                         {activeCategory === "cuisines" && (
                             <div className="space-y-4">
                                 <h3 className="font-medium text-sm">FILTER BY CUISINE</h3>
-                                <Radio02 options={cuisineOptions} defaultValue="indian" />
+                                <Radio02 options={cuisineOptions} defaultValue={selectedCuisine} onChange={handleCuisineChange} />
                             </div>
                         )}
                         {activeCategory === "explore" && (
@@ -157,19 +164,19 @@ export default function FilterMenu() {
                         {activeCategory === "ratings" && (
                             <div className="space-y-4">
                                 <h3 className="font-medium text-sm">FILTER BY</h3>
-                                <Radio02 options={ratingOption} defaultValue="" />
+                                <Radio02 options={ratingOption} defaultValue="" onChange={() => { }} />
                             </div>
                         )}
                         {activeCategory === "veg" && (
                             <div className="space-y-4">
                                 <h3 className="font-medium text-sm">FILTER BY</h3>
-                                <Radio02 options={foodCategory} defaultValue="" />
+                                <Radio02 options={foodCategory} defaultValue="" onChange={() => { }} />
                             </div>
                         )}
                         {activeCategory === "offers" && (
                             <div className="space-y-4">
                                 <h3 className="font-medium text-sm">FILTER BY</h3>
-                                <Radio02 options={offerOption} defaultValue="" />
+                                <Radio02 options={offerOption} defaultValue="" onChange={() => { }} />
                             </div>
                         )}
                     </ScrollArea>

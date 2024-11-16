@@ -10,7 +10,11 @@ import {
 import Radio02 from "@/components/ui/radio02";
 import FilterMenu from "@/components/Filters/FilterMenu";
 
-export default function Filters() {
+interface FiltersProps {
+    onCuisineChange: (cuisine: string) => void;
+}
+
+export default function Filters({ onCuisineChange }: FiltersProps) {
     const [selectedButtons, setSelectedButtons] = useState<{ [key: string]: boolean }>({});
 
     const toggleButton = (value: string) => {
@@ -41,14 +45,14 @@ export default function Filters() {
     return (
         <section>
             <div className="flex flex-row gap-3 m-5 text-xs">
-                <FilterMenu />
+                <FilterMenu onCuisineChange={onCuisineChange} />
                 <Popover>
                     <PopoverTrigger asChild>
                         <ShimmerButton className="rounded-full gap-3"><div>Sort by</div> <ChevronDown /></ShimmerButton>
                     </PopoverTrigger>
                     <PopoverContent>
                         <div className="flex items-center justify-center">
-                            <Radio02 options={options} defaultValue="relevance" />
+                            <Radio02 options={options} defaultValue="relevance" onChange={() => { }} />
                         </div>
                     </PopoverContent>
                 </Popover>
