@@ -1,11 +1,20 @@
 import { Input } from "@/components/ui/input";
 import { ArrowRight, Search } from "lucide-react";
 
-export default function Input26() {
+interface SearchProps {
+    setSearchInput: (value: string) => void;
+}
+export default function Input26({ setSearchInput }: SearchProps) {
     return (
         <div className="space-y-2">
             <div className="relative">
-                <Input id="input-26" className="peer pe-9 ps-9" placeholder="Search..." type="search" />
+                <Input
+                    id="input-26"
+                    className="peer pe-9 ps-9"
+                    placeholder="Search..."
+                    type="search"
+                    onChange={(e) => setSearchInput(e.target.value)}
+                />
                 <div className="pointer-events-none absolute inset-y-0 start-0 flex items-center justify-center ps-3 text-muted-foreground/80 peer-disabled:opacity-50">
                     <Search size={16} strokeWidth={2} />
                 </div>

@@ -1,7 +1,12 @@
 import Search from "@/components/ui/search";
 import Link from "next/link";
 import Image from "next/image";
-export default function Navbar() {
+
+interface NavbarProps {
+    setSearchInput: (value: string) => void;
+}
+
+export default function Navbar({ setSearchInput }: NavbarProps) {
     return (
         <nav className="max-w-screen flex flex-row mx-10 my-8 p-5 bg-white shadow-lg drop-shadow-lg rounded-md hover:shadow-orange-200 sticky top-0 z-10">
             <div className="w-1/2 h-full justify-start rounded-lg">
@@ -10,9 +15,8 @@ export default function Navbar() {
                 </Link>
             </div>
             <div className="w-1/2 h-full flex justify-end">
-                <Search />
+                <Search setSearchInput={setSearchInput} />
             </div>
         </nav>
     );
-
 }

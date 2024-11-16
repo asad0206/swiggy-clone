@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import MealCard from "./MealCard";
 import { Button } from "@/components/ui/button";
+import Fuse from "fuse.js";
 
 interface Meal {
     strMeal: string;
@@ -23,7 +24,11 @@ interface ApiResponse {
     meals: Meal[] | DetailedMeal[];
 }
 
-export default function Products() {
+interface SearchProps {
+    searchInput: string;
+}
+
+export default function Products({ searchInput }: SearchProps) {
     const [products, setProducts] = useState<{
         Name: string;
         Area: string;
@@ -84,8 +89,18 @@ export default function Products() {
         fetchData();
     }, []);
 
-    const pageCount = Math.ceil(products.length / productsPerPage);
-    const paginatedProducts = products.slice(
+    const fuse = new Fuse(products, {
+        keys: ['Name'],
+        includeScore: true,
+        threshold: 0.4,
+    });
+
+    const filteredProducts = searchInput
+        ? fuse.search(searchInput).map(result => result.item)
+        : products;
+
+    const pageCount = Math.ceil(filteredProducts.length / productsPerPage);
+    const paginatedProducts = filteredProducts.slice(
         currentPage * productsPerPage,
         (currentPage + 1) * productsPerPage
     );
