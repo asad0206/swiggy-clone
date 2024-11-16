@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { Settings2, ChevronDown, X } from "lucide-react";
+import { ChevronDown, X } from "lucide-react";
 import ShimmerButton from "@/components/ui/shimmer-button";
 import {
     Popover,
