@@ -8,7 +8,7 @@ interface NavbarProps {
 
 export default function Navbar({ setSearchInput }: NavbarProps) {
     return (
-        <nav className="max-w-screen flex flex-row mx-10 my-8 p-5 bg-white shadow-lg drop-shadow-lg rounded-md hover:shadow-orange-200 sticky top-0 z-10">
+        <nav className="max-w-screen flex flex-row mx-10 p-5 bg-white shadow-lg drop-shadow-lg rounded-md hover:shadow-orange-200 sticky top-0 z-10">
             <div className="w-1/2 h-full justify-start rounded-lg">
                 <Link href={"/"}>
                     <Image src="/swiggy-logo.webp" alt="Swiggy Logo" width={150} height={100} />

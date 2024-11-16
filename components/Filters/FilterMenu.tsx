@@ -105,7 +105,7 @@ export default function FilterMenu({ onCuisineChange }: FilterMenuProps) {
                     </div>
                 </DialogHeader>
                 <div className="grid grid-cols-[200px_1fr] h-[300px]">
-                    <ScrollArea className="border-r border-2">
+                    <ScrollArea className="border-r-2 border-r-black my-2">
                         {categories.map((category) => (
                             <Button
                                 key={category.id}

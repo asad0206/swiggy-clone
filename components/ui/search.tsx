@@ -6,7 +6,7 @@ interface SearchProps {
 }
 export default function Input26({ setSearchInput }: SearchProps) {
     return (
-        <div className="space-y-2">
+        <div className="space-y-2 bg-gray-200 rounded-md ">
             <div className="relative">
                 <Input
                     id="input-26"
