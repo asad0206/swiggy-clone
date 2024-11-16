@@ -26,9 +26,9 @@ export default function FilterMenu({ onCuisineChange }: FilterMenuProps) {
     const [selectedCuisine, setSelectedCuisine] = useState("indian")
 
     const categories = [
+        { id: "cuisines", label: "Cuisines" },
         { id: "sort", label: "Sort" },
         { id: "delivery", label: "Delivery Time" },
-        { id: "cuisines", label: "Cuisines" },
         { id: "explore", label: "Explore" },
         { id: "ratings", label: "Ratings" },
         { id: "veg", label: "Veg/Non-Veg" },
