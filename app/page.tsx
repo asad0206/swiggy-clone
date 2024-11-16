@@ -1,8 +1,11 @@
 "use client";
+
+import React, { useState } from "react";
+
 import Navbar from "@/components/Navbar/Navbar";
 import Products from "@/components/DataBlocks/Products";
 import Filters from "@/components/Filters/Filters";
-import React, { useState } from "react";
+
 
 export default function Home() {
   const [searchInput, setSearchInput] = useState("");
